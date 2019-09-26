@@ -8,10 +8,16 @@ Works with
 
 ## Installation
 
-Install from the [PowerShell gallery](https://www.powershellgallery.com/)
+Install from the [PowerShell gallery](https://www.powershellgallery.com/packages/Elastic.Console/)
 
 ```powershell
 Install-Module Elastic.Console
+```
+
+If installing a prerelease version, `-AllowPrerelease` switch is required
+
+```powershell
+Install-Module Elastic.Console -AllowPrerelease
 ```
 
 Install from a local directory
