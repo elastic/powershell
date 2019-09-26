@@ -26,6 +26,24 @@ Install from a local directory
 Import-Module ./Elastic.Console/Elastic.Console.psd1
 ```
 
+### Including in your PowerShell profile
+
+Open your PowerShell profile in your favourite text editor. You can find the location of your profile in PowerShell with
+
+```
+$PROFILE
+```
+
+Add the following lines to your profile and save
+
+```powershell
+if (Get-Module -ListAvailable -Name Elastic.Console) {
+    Import-Module Elastic.Console
+} else {
+    Install-Module Elastic.Console -AllowPrerelease
+}
+```
+
 ## Commands
 
 To list the available commands in the module
