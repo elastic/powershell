@@ -138,7 +138,7 @@ es twitter/_doc/1 -Pretty -Method PUT -Body @'
 The default endpoint is `http://localhost:9200` but you can connect to any host and port
 
 ```powershell
-es -Uri http://192.168.0.1:9200 _cat/indices
+es https://example.com:9200/_cat/indices
 ```
 
 
