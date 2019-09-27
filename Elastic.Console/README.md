@@ -135,6 +135,13 @@ es twitter/_doc/1 -Pretty -Method PUT -Body @'
 '@
 ```
 
+The default endpoint is `http://localhost:9200` but to connect to a specific endpoint use the `-Uri` parameter:
+
+```powershell
+es -Uri http://192.168.0.1:9200 _cat/indices
+```
+
+
 Sends a request to Elasticsearch to create a document with id 1 in the twitter index. The document is sent as a 
 JSON string literal.
 
