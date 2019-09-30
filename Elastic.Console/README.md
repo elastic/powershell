@@ -124,6 +124,12 @@ es _cat/indices
 
 Sends a request to Elasticsearch to list the indices in the cluster. `es` is an alias for `Invoke-Elasticsearch`
 
+The default endpoint is `http://localhost:9200` but you can connect to any host and port
+
+```powershell
+es https://example.com:9200/_cat/indices
+```
+
 
 ```powershell
 es twitter/_doc/1 -Pretty -Method PUT -Body @'
