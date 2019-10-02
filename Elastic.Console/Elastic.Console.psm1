@@ -1,4 +1,4 @@
-﻿# Register-ArgumentCompleter needs minimum v3.0
+# Register-ArgumentCompleter needs minimum v3.0
 Set-StrictMode -Version 3.0
 
 #load types used by the module
@@ -201,25 +201,51 @@ function Set-ElasticsearchVersion {
                 # skip specs where the first key/value isn't an object
                 if (-not ($api.Value -is [string])) {
                     $name = $api.Name
-                    $methods = $api.Value.methods
-                    $url = $api.Value.url
 
-                    foreach($path in $url.paths) {
-                        $apiCompleter = @{
-                            name = $name
-                            path = $path
-                            parts = $path.Split($forwardSlashChar, [System.StringSplitOptions]::RemoveEmptyEntries)
-                            methods = $methods
-                        }
+                    if ($api.Value.PsObject.Properties.Name -contains "methods") {
+                        # old REST api spec format that lists methods at the top level
+                        $methods = $api.Value.methods
+                        $url = $api.Value.url
 
-                        $apiCompleters += $apiCompleter
-
-                        for ($i = 0; $i -lt $apiCompleter.parts.Length; $i++) {
-                            if (($pathCompleters.Count - 1) -lt $i) {
-                                [void]$pathCompleters.Add($(New-Object System.Collections.Generic.HashSet[string]))
+                        foreach($path in $url.paths) {
+                            $apiCompleter = @{
+                                name = $name
+                                path = $path
+                                parts = $path.Split($forwardSlashChar, [System.StringSplitOptions]::RemoveEmptyEntries)
+                                methods = $methods
                             }
 
-                            [void]$pathCompleters[$i].Add($apiCompleter.parts[$i])
+                            $apiCompleters += $apiCompleter
+
+                            for ($i = 0; $i -lt $apiCompleter.parts.Length; $i++) {
+                                if (($pathCompleters.Count - 1) -lt $i) {
+                                    [void]$pathCompleters.Add($(New-Object System.Collections.Generic.HashSet[string]))
+                                }
+
+                                [void]$pathCompleters[$i].Add($apiCompleter.parts[$i])
+                            }
+                        }
+                    } else {
+                        # newer REST api spec format that lists methods against paths
+                        $url = $api.Value.url
+
+                        foreach($path in $url.paths) {
+                            $apiCompleter = @{
+                                name = $name
+                                path = $path.path
+                                parts = $path.path.Split($forwardSlashChar, [System.StringSplitOptions]::RemoveEmptyEntries)
+                                methods = $path.methods
+                            }
+
+                            $apiCompleters += $apiCompleter
+
+                            for ($i = 0; $i -lt $apiCompleter.parts.Length; $i++) {
+                                if (($pathCompleters.Count - 1) -lt $i) {
+                                    [void]$pathCompleters.Add($(New-Object System.Collections.Generic.HashSet[string]))
+                                }
+
+                                [void]$pathCompleters[$i].Add($apiCompleter.parts[$i])
+                            }
                         }
                     }
                 }
@@ -909,8 +935,7 @@ function Get-ElasticsearchIndex
 }
 
 # Set Elasticsearch version to the one being installed
-$module = Get-Module -ListAvailable -Name Elastic.Console | Sort-Object -Property Version -Descending | Select-Object -First 1
-Set-ElasticsearchVersion $module.Version
+Set-ElasticsearchVersion -Version "7.4.0"
 
 Set-Alias -Name es -Value Invoke-Elasticsearch -Description "Sends a request to Elasticsearch"
 Set-Alias -Name ckc -Value ConvertFrom-KibanaConsole -Description "Converts a Kibana Console command to Invoke-Elasticsearch command"
