@@ -63,6 +63,9 @@ Get-Help <Command Name> -Full
 Sets the version of Elasticsearch to work against. This will download the REST API specs for the given version
 of Elasticsearch if not already downloaded, using the specs to power tab completion of API endpoints and HTTP methods.
 
+`Set-ElasticsearchVersion` only needs to be called once in a PowerShell session, ideally at the start of the session,
+to set the version of Elasticsearch for the session.
+
 #### Example
 
 ```powershell
@@ -72,7 +75,7 @@ Set-ElasticsearchVersion 7.3.0
 ### `Get-ElasticsearchVersion`
 
 Gets the version of Elasticsearch that has been set with `Set-ElasticsearchVersion`, or lists the versions of Elasticsearch for which specs
-have been downloaded, when using the `-ListAvaiable` switch
+have been downloaded, when using the `-ListAvailable` switch
 
 #### Examples
 
@@ -103,6 +106,8 @@ this to be piped to other commands like `jq`, to file, etc.
 If `Set-ElasticsearchVersion` is called prior to calling `Invoke-Elasticsearch`, PowerShell tab completion
 can be used to complete API endpoints and accepted HTTP methods.
 
+`Invoke-Elasticsearch` is aliased to `es` to make usage more concise.
+
 ----
 **NOTE**
 
@@ -116,13 +121,15 @@ Set-PSReadLineOption -EditMode Windows
 ```
 ----
 
-#### Examples
+### Examples
+
+#### Simple requests
 
 ```powershell
 es _cat/indices
 ```
 
-Sends a request to Elasticsearch to list the indices in the cluster. `es` is an alias for `Invoke-Elasticsearch`
+Sends a request to Elasticsearch to list the indices in the cluster.
 
 The default endpoint is `http://localhost:9200` but you can connect to any host and port
 
@@ -130,6 +137,7 @@ The default endpoint is `http://localhost:9200` but you can connect to any host 
 es https://example.com:9200/_cat/indices
 ```
 
+#### Requests with a string body
 
 ```powershell
 es twitter/_doc/1 -Pretty -Method PUT -Body @'
@@ -143,6 +151,8 @@ es twitter/_doc/1 -Pretty -Method PUT -Body @'
 
 Sends a request to Elasticsearch to create a document with id 1 in the twitter index. The document is sent as a 
 JSON string literal.
+
+#### Requests with a Hashtable body
 
 ```powershell
 es posts/_search?pretty -u elastic:changeme -H @{ 'X-Opaque-Id' = 'track_this_call' } -ResponseVariable response -d @{
@@ -162,6 +172,8 @@ using the tasks API. The search query is passed as a `Hashtable`. The underlying
 with the `response` variable passed to `-ResponseVariable`, allowing the status code and response headers to be 
 inspected.
 
+#### Requests with a body read from file
+
 ```powershell
 es posts/_bulk -ContentType application/x-ndjson -d ./data.json
 ```
@@ -180,7 +192,7 @@ body of the request is piped to the command.
 
 Converts Kibana console requests to a form that can be piped to `Invoke-Elasticsearch`. Can handle multiple requests
 
-#### Examples
+#### Multiple console requests
 
 ```powershell
 @'
@@ -214,9 +226,11 @@ PUT /my_locations/_doc/1
 Converts two Kibana console requests to requests that can be piped to
 Elasticsearch to execute
 
+#### Pipe console strings
+
 ```powershell
 'GET /_cat/indices' | ckc | es
 ```
 
-Converts a Kibana console GET request to the _cat/indices endpoint and pipes the
+Converts a Kibana console GET request to the `_cat/indices` endpoint and pipes the
 resulting request to Elasticsearch to execute
