@@ -25,9 +25,6 @@ function Log {
     Write-Output $LogMessage
 }
 
-# Log "Removing all files under ./Elastic.Console/specs"
-# Remove-Item ./Elastic.Console/specs/* -Recurse -Force -ErrorAction Ignore
-
 $manifest = "./Elastic.Console/Elastic.Console.psd1"
 Log "Updating $manifest"
 if (-not $ReleaseNotes) {

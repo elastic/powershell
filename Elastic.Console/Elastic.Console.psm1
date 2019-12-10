@@ -935,7 +935,7 @@ function Get-ElasticsearchIndex
 }
 
 # Set Elasticsearch version to the one being installed
-Set-ElasticsearchVersion -Version "7.4.0"
+Set-ElasticsearchVersion -Version "7.5.0"
 
 Set-Alias -Name es -Value Invoke-Elasticsearch -Description "Sends a request to Elasticsearch"
 Set-Alias -Name ckc -Value ConvertFrom-KibanaConsole -Description "Converts a Kibana Console command to Invoke-Elasticsearch command"
