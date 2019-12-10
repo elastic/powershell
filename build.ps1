@@ -10,7 +10,11 @@ param(
 
     [string]
     [Parameter()]
-    $ReleaseNotes
+    $ReleaseNotes,
+
+    [System.Security.Cryptography.X509Certificates.X509Certificate2]
+    [Parameter()]
+    $Certificate
 )
 
 function Log {
@@ -60,4 +64,17 @@ Get-ChildItem ./Elastic.Console/specs/* | ForEach-Object {
     }
 }
 
-Log "Done. Ready to publish"
+if ($Certificate) {
+    Log "Signing $module with passed certificate $($cert.Subject)"
+    Set-AuthenticodeSignature -FilePath $module -Certificate $Certificate
+
+    Log "Checking signature"
+    Get-AuthenticodeSignature -FilePath $module
+    Log "Done. ready for publishing"
+
+} else {
+    Log "Done. Scripts should be signed for publishing with a Code Signing Certificate"
+}
+
+
+

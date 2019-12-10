@@ -110,7 +110,7 @@ PrivateData = @{
         IconUri = 'https://raw.githubusercontent.com/elastic/powershell/master/build/elastic-cluster-icon.png'
 
         # ReleaseNotes of this module
-        ReleaseNotes = 'Update to version 7.5.0.'
+        ReleaseNotes = 'Update to version 7.5.0. Sign module with code signing certificate'
 
         # Prerelease string of this module
         Prerelease = 'rc1'

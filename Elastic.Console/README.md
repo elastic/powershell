@@ -234,3 +234,36 @@ Elasticsearch to execute
 
 Converts a Kibana console GET request to the `_cat/indices` endpoint and pipes the
 resulting request to Elasticsearch to execute
+
+### Development
+
+#### Building
+
+The Elastic.Console can be built using the simple `build.ps1` script in the repository root.
+Take a look at the `params()` within the script to see what parameters are supported.
+
+#### Code signing
+
+In order to publish Elastic.Console, the module should be built using the `build.ps1` script,
+passing a code signing certificate to sign the module.
+
+An example of building the module for publishing
+
+```powershell
+$cert = (dir Cert:\CurrentUser\My -CodeSigningCert)[0]
+.\build.ps1 -Version 7.5.0 -Prerelease rc1 -Certificate $cert
+```
+
+This retrieves the first code signing certificate from the current user's personal 
+certificate store (on Windows), and uses it to sign the Elastic.Console.psm1 module file.
+
+#### Publishing
+
+The module can be published to the [PowerShell gallery](https://www.powershellgallery.com/)
+with
+
+```powershell
+Publish-Module -Path .\Elastic.Console\ -NuGetApiKey '<NugetApiKey>'
+```
+
+where `<NugetApiKey>` is an API key tied to your PowerShell gallery account. 
