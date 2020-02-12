@@ -672,6 +672,9 @@ function ConvertFrom-KibanaConsole {
 .Parameter ResponseVariable
     The name of a variable to which the response will be assigned, with global scope.
     The response can be inspected for response headers, status code, etc.
+.Parameter Bytes
+    Return the response as a byte array. 
+    The response will be returned as a string by default, which may not be desired for content types like CBOR.
 .Inputs
     The request body. May be a JSON string literal, a Hashtable, or a path to a file containing JSON
 .Outputs
@@ -727,7 +730,10 @@ function Invoke-Elasticsearch {
 
         [Alias("response")]
         [string]
-        $ResponseVariable
+        $ResponseVariable,
+
+        [switch]
+        $Bytes
     )
     Begin {
     }
@@ -824,12 +830,28 @@ function Invoke-Elasticsearch {
                 Set-Variable -Name $ResponseVariable -Value $response -Scope Global
             }
 
-            if ($response.Content -is [string]) {
-                #PowerShell
-                return $response.Content
-            } else {
+            if ($response.Content.GetType().FullName -eq "System.Net.Http.HttpContent") {
                 #PowerShell Core
-                return $response.Content.ReadAsStringAsync().Result;
+                if ($Bytes) {
+                    return $response.Content.ReadAsByteArrayAsync().Result;
+                } else {
+                    return $response.Content.ReadAsStringAsync().Result;
+                }
+            } else {
+                #PowerShell
+                if ($response.Content -is [string]) {
+                    if ($Bytes) {
+                        return [Text.Encoding]::UTF8.GetBytes($response.Content);
+                    }
+
+                    return $response.Content;
+                } else {
+                    if ($Bytes) {
+                        return $response.Content
+                    } 
+                        
+                    return [Text.Encoding]::UTF8.GetString($response.Content);
+                }
             }
         }
         catch {
