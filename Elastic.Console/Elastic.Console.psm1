@@ -957,7 +957,7 @@ function Get-ElasticsearchIndex
 }
 
 # Set Elasticsearch version to the one being installed
-Set-ElasticsearchVersion -Version "7.5.0"
+Set-ElasticsearchVersion -Version "7.6.0"
 
 Set-Alias -Name es -Value Invoke-Elasticsearch -Description "Sends a request to Elasticsearch"
 Set-Alias -Name ckc -Value ConvertFrom-KibanaConsole -Description "Converts a Kibana Console command to Invoke-Elasticsearch command"
@@ -966,8 +966,8 @@ Set-Alias -Name hash -Value ConvertFrom-Json -Description "Converts JSON into a 
 # SIG # Begin signature block
 # MIIOHAYJKoZIhvcNAQcCoIIODTCCDgkCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU+pZY3CXYEEhKybFfwNO3dD49
-# F8igggtSMIIFajCCBFKgAwIBAgIRALVV9nHrVFUKcgNbgqjR2vAwDQYJKoZIhvcN
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUgVfUeFPomkEeeHhJro+840+O
+# BQmgggtSMIIFajCCBFKgAwIBAgIRALVV9nHrVFUKcgNbgqjR2vAwDQYJKoZIhvcN
 # AQELBQAwfTELMAkGA1UEBhMCR0IxGzAZBgNVBAgTEkdyZWF0ZXIgTWFuY2hlc3Rl
 # cjEQMA4GA1UEBxMHU2FsZm9yZDEaMBgGA1UEChMRQ09NT0RPIENBIExpbWl0ZWQx
 # IzAhBgNVBAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBMB4XDTE2MTExNDAw
@@ -1033,11 +1033,11 @@ Set-Alias -Name hash -Value ConvertFrom-Json -Description "Converts JSON into a 
 # TyBSU0EgQ29kZSBTaWduaW5nIENBAhEAtVX2cetUVQpyA1uCqNHa8DAJBgUrDgMC
 # GgUAoHgwGAYKKwYBBAGCNwIBDDEKMAigAoAAoQKAADAZBgkqhkiG9w0BCQMxDAYK
 # KwYBBAGCNwIBBDAcBgorBgEEAYI3AgELMQ4wDAYKKwYBBAGCNwIBFTAjBgkqhkiG
-# 9w0BCQQxFgQU0Q37VebSSpHftUYMiyYCzyjPOGQwDQYJKoZIhvcNAQEBBQAEggEA
-# HKDd24JVuQQWRPLe0cnPmlGvWdjz3NnR/sIs0u6HFHtVIM5LLkwPE62E3KKl0PtM
-# Y4BCgrvZsB3Gkmye7HzyKnWVG3wLS3PQFEFyhNI7u8duYUE8LTLeR+Hae0KeH0nY
-# yn39jK5pTDpSzuCoora9jJHX/sY9FBCM3Y7SejUvS+oWU7fgYFWLW9iksjFTjBcb
-# cGGXQCdmwd0pIIcTCqtJw6JABSX4vXNNAGXoaZeO0Xd6SWQmqjv/dSV/VHPp+ilZ
-# ztrKZlGLlMXFqTApizPCilB27nhF9n3hQANpK0WdzFqVpt78YSrYYbqS+jfA8sAj
-# AgM2Rhw8vOK2iMD4WIbUnA==
+# 9w0BCQQxFgQUsYRtXC6m6UFm8EBD1SgA+6cxszowDQYJKoZIhvcNAQEBBQAEggEA
+# IbXM96O1ewL+ATiiALaK5InTNhpMXdvpUzQTNe5qRtkhnyH/MsEyvsueRd++rufy
+# keME31ZXvDtCILBiDWWctCwXZRyYPufizaYaLj1IO7I5V1OUOvdoojq9A48W3T+A
+# QfQPa1NJiu61LbX+nHNqWwj/L1S/fN/pWHUzbFElBsQpNffa+f9At4b5vG9OiwRv
+# YDVzEurOrOJUAdC2ev2JmdejMPyEQKznFSei3Rw9yjqqvspHz+XzrvQ00YAjU+9m
+# kZWvrX0rLxtNihgUy0K7GztQ8MDLRq+5U4uiMRgVWHyZBb4dQGQsbB+l74KU/inf
+# 9g4w1ziGrFYCNv3c5n3paA==
 # SIG # End signature block
