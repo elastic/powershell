@@ -563,7 +563,7 @@ function ConvertFrom-KibanaConsole {
 
     End {
         $emptyChars = @(" ")
-        $newLines = @("`n", "`r`n", [Environment]::NewLine)
+        $newLines = [string[]]@("`n", "`r`n", [Environment]::NewLine)
 
         $requests | ForEach-Object {
             $consoleParts = $_.Split($newLines, 2, [StringSplitOptions]::RemoveEmptyEntries)
@@ -960,7 +960,7 @@ function Get-ElasticsearchIndex
 Set-ElasticsearchVersion -Version "7.6.0"
 
 Set-Alias -Name es -Value Invoke-Elasticsearch -Description "Sends a request to Elasticsearch"
-Set-Alias -Name ckc -Value ConvertFrom-KibanaConsole -Description "Converts a Kibana Console command to Invoke-Elasticsearch command"
+Set-Alias -Name ckc -Value ConvertFrom-KibanaConsole -Description "Converts a Kibana Console request to a request that can be passed to Invoke-Elasticsearch"
 Set-Alias -Name hash -Value ConvertFrom-Json -Description "Converts JSON into a dictionary/hashmap"
 
 # SIG # Begin signature block
