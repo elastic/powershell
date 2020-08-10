@@ -957,7 +957,7 @@ function Get-ElasticsearchIndex
 }
 
 # Set Elasticsearch version to the one being installed
-Set-ElasticsearchVersion -Version "7.7.0"
+Set-ElasticsearchVersion -Version "7.8.1"
 
 Set-Alias -Name es -Value Invoke-Elasticsearch -Description "Sends a request to Elasticsearch"
 Set-Alias -Name ckc -Value ConvertFrom-KibanaConsole -Description "Converts a Kibana Console request to a request that can be passed to Invoke-Elasticsearch"
@@ -966,8 +966,8 @@ Set-Alias -Name hash -Value ConvertFrom-Json -Description "Converts JSON into a 
 # SIG # Begin signature block
 # MIIOHAYJKoZIhvcNAQcCoIIODTCCDgkCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUzEbigbZgyDVlNB097mZcKRzo
-# N6ugggtSMIIFajCCBFKgAwIBAgIRALVV9nHrVFUKcgNbgqjR2vAwDQYJKoZIhvcN
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUrcBZd7nxZvrIMW8sTkqh1yw+
+# z/+gggtSMIIFajCCBFKgAwIBAgIRALVV9nHrVFUKcgNbgqjR2vAwDQYJKoZIhvcN
 # AQELBQAwfTELMAkGA1UEBhMCR0IxGzAZBgNVBAgTEkdyZWF0ZXIgTWFuY2hlc3Rl
 # cjEQMA4GA1UEBxMHU2FsZm9yZDEaMBgGA1UEChMRQ09NT0RPIENBIExpbWl0ZWQx
 # IzAhBgNVBAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBMB4XDTE2MTExNDAw
@@ -1033,11 +1033,11 @@ Set-Alias -Name hash -Value ConvertFrom-Json -Description "Converts JSON into a 
 # TyBSU0EgQ29kZSBTaWduaW5nIENBAhEAtVX2cetUVQpyA1uCqNHa8DAJBgUrDgMC
 # GgUAoHgwGAYKKwYBBAGCNwIBDDEKMAigAoAAoQKAADAZBgkqhkiG9w0BCQMxDAYK
 # KwYBBAGCNwIBBDAcBgorBgEEAYI3AgELMQ4wDAYKKwYBBAGCNwIBFTAjBgkqhkiG
-# 9w0BCQQxFgQURqHhpLLEZblGkZRwwXVk4JOQCYMwDQYJKoZIhvcNAQEBBQAEggEA
-# nJOJdh5KxjvXdlKfFUGyxwgUt086YFNbUFbKftJ12S5qrA7DRnSyXDN6SxZeIpMb
-# STvvh6zde8wmtzYbg5DXf4w1sDXOY9mVzCc6f0MgGZuKlo/IKCBATzrOCP1S261I
-# rM3C+BbGbU0am+D/bjg/vxfVKeGNwLKB5oM6QB2VPnnksmzFjhnf9LAxXo71m5Mn
-# f/RwEw+/BSrisCa8lwzh+gESyCsImnX2mD0y9sVBmpcFwawic+xVVz9SxMrTY0wY
-# QkcxbC1HL6aMJVaUIqhdPRpGKfxZKkEU4SyF7INcQrCWaOKg5M5fUHF89JCaYsMQ
-# QuFj/T4rerMwQW+3A0Pz8w==
+# 9w0BCQQxFgQUCfGYItx7+MBjkJ60/K+j1qhRP8EwDQYJKoZIhvcNAQEBBQAEggEA
+# sSG3UxuQJy2O4GtA9zv1yovJW4GHZX3woesd3PTaCmwkDxsl75LP1qKZc1LV+3ko
+# ZEi6UiG1B7LEJT71Qj4bUK8vHGE9eCD+hJNjAvoFIKwqSrvgGE0nBGNn/7U3XtM+
+# nlA5mcOAVHRmNRe4N5azXRZnQBGsQVOSGYjtWcOaZOQxTE1V8rREmDcnteUtS75q
+# kCllipGJ/0kDbrJ/sdOq1idj/HC35BcPvQcc2K+W7+bDVXwMj29SuXlQFNCDMdOa
+# VE3mDVRQVyUoghJAU001G1b6qSyRCya5yifcQ+q+ggGku2SAIHwjWsh5iEz5/zg5
+# D4nNZyouAwDuuDqhkQm/OQ==
 # SIG # End signature block
