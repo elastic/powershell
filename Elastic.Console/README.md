@@ -263,7 +263,7 @@ The module can be published to the [PowerShell gallery](https://www.powershellga
 with
 
 ```powershell
-Publish-Module -Path .\Elastic.Console\ -NuGetApiKey '<NugetApiKey>'
+Publish-Module -Path .\Elastic.Console\ -NuGetApiKey '<NugetApiKey>' -Exclude .\Elastic.Console\README.md
 ```
 
 where `<NugetApiKey>` is an API key tied to your PowerShell gallery account. 
