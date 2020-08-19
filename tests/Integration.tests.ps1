@@ -55,6 +55,16 @@ Describe "Oss distribution tests" {
             @{ message = "hashtable test" } | es /basic_test_index/_doc/hash_pipeline  | Should -Match '"result":"created"'
         }
 
+        It "should return bytes with -Bytes" {
+            es -X PUT "bytes_index_1" -ResponseVariable odt2
+            $odt2.StatusCode | Should -Be 200
+
+            $bytes = es "_cat/indices?format=json" -Bytes
+            $bytes | Should -BeOfType [byte]
+            $json = [System.Text.Encoding]::UTF8.GetString($bytes)
+            { ConvertFrom-Json $json } | Should -Not -Throw
+        }
+
         It "should capture underlying response object with -ResponseVariable" {
             es "/" -ResponseVariable odt1
             $odt1 | Should -Not -BeNullOrEmpty
@@ -78,7 +88,7 @@ Describe "Oss distribution tests" {
             es -X PUT "headers_index_2" -ResponseVariable odt2
             $odt2.StatusCode | Should -Be 200
 
-            es "_cat/indices" -Headers @{ "Content-Type" = "text/plain" } -ResponseVariable odt2
+            es "_cat/indices" -Headers @{ "Content-Type" = "text/plain"; Accept = "text/plain" } -ResponseVariable odt2
             $odt2.StatusCode | Should -Be 200
             $odt2.Headers.Keys | Should -Contain "Content-Type" 
             $odt2.Headers["Content-Type"] | Should -Be "text/plain; charset=UTF-8"

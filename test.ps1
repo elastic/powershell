@@ -13,7 +13,6 @@ if (!($pester)) {
 }
 
 Import-Module Pester -Version $pesterVersion
-Import-Module -Name ./tests/elasticsearch.ps1 -Force | Out-Null
 
 $pesterParameters = @{
     Path = "./tests/*.tests.ps1"
