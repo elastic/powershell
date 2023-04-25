@@ -168,11 +168,6 @@ function Set-ElasticsearchVersion {
             $contentsApi = "https://api.github.com/repos/elastic/elasticsearch/contents"
             $specUrls = @("$contentsApi/rest-api-spec/src/main/resources/rest-api-spec/api?ref=v$Version")
 
-            # Get the REST API specs for Elastic Stack Feature/X-Pack endpoints too, when available
-            if ($Version -ge "6.3.0") {
-                $specUrls += "$contentsApi/x-pack/plugin/src/test/resources/rest-api-spec/api?ref=v$Version"
-            }
-
             $downloadurls = $specUrls | Foreach-Object  {
                 Invoke-RestMethod $_ | Where-Object { $_.name.EndsWith(".json") } | Foreach-Object { $_.download_url }
             }
