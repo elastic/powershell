@@ -169,8 +169,7 @@ function Set-ElasticsearchVersion {
             $specUrls = @("$contentsApi/rest-api-spec/src/main/resources/rest-api-spec/api?ref=v$Version")
 
             $downloadurls = $specUrls | Foreach-Object  {
-                
-                Method $_ | Where-Object { $_.name.EndsWith(".json") } | Foreach-Object { $_.download_url }
+                Invoke-RestMethod $_ | Where-Object { $_.name.EndsWith(".json") } | Foreach-Object { $_.download_url }
             }
 
             # TODO: optimize by downloading in parallel
